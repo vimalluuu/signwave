@@ -7,6 +7,8 @@ import {SettingsFeedbackComponent} from '../settings-feedback/settings-feedback.
 import {SettingsAppearanceComponent} from '../settings-appearance/settings-appearance.component';
 import {TranslocoDirective} from '@jsverse/transloco';
 import {
+  IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -18,8 +20,9 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import {RouterLink} from '@angular/router';
 import {addIcons} from 'ionicons';
-import {airplane, chatbubbles, informationCircle, mic, personCircle, volumeMedium} from 'ionicons/icons';
+import {airplane, chatbubbles, informationCircle, mic, personCircle, volumeMedium, homeOutline} from 'ionicons/icons';
 
 interface Page {
   path: string;
@@ -48,6 +51,9 @@ interface PagesGroup {
     IonNavLink,
     IonItem,
     IonIcon,
+    IonButtons,
+    IonButton,
+    RouterLink,
   ],
 })
 export class SettingsMenuComponent {
@@ -76,6 +82,6 @@ export class SettingsMenuComponent {
   ];
 
   constructor() {
-    addIcons({chatbubbles, informationCircle, mic, volumeMedium, airplane, personCircle});
+    addIcons({chatbubbles, informationCircle, mic, volumeMedium, airplane, personCircle, homeOutline});
   }
 }
