@@ -108,10 +108,6 @@ export class VideoState implements NgxsOnInit {
     patchState({error: null});
     this.stopVideo(context);
 
-    if (!('document' in globalThis)) {
-      return;
-    }
-
     const videoEl: HTMLVideoElement = document.createElement('video');
     videoEl.addEventListener('loadedmetadata', () => {
       const width = videoEl.videoWidth;

@@ -45,11 +45,7 @@ export class PlaygroundComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.translocoService.events$
       .pipe(
-        tap(() => {
-          if ('document' in globalThis) {
-            document.title = this.translocoService.translate('playground.title');
-          }
-        }),
+        tap(() => (document.title = this.translocoService.translate('playground.title'))),
         takeUntil(this.ngUnsubscribe)
       )
       .subscribe();
