@@ -12,11 +12,13 @@ import {SpokenToSignedComponent} from '../spoken-to-signed/spoken-to-signed.comp
 import {SignedToSpokenComponent} from '../signed-to-spoken/signed-to-spoken.component';
 import {DropPoseFileComponent} from '../drop-pose-file/drop-pose-file.component';
 import {addIcons} from 'ionicons';
-import {cloudUpload, informationCircleOutline, language, videocam} from 'ionicons/icons';
+import {cloudUpload, informationCircleOutline, language, videocam, downloadOutline} from 'ionicons/icons';
 import {RouterLink} from '@angular/router';
 import {LogoComponent} from '../../../components/logo/logo.component';
 import {AnnouncementBannerComponent} from '../../../components/announcement-banner/announcement-banner.component';
 import {LandingFooterComponent} from '../../landing/landing-footer/landing-footer.component';
+import {PwaInstallService} from '../../../core/services/pwa-install/pwa-install.service';
+import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-translate-desktop',
@@ -41,11 +43,13 @@ import {LandingFooterComponent} from '../../landing/landing-footer/landing-foote
     LogoComponent,
     AnnouncementBannerComponent,
     LandingFooterComponent,
+    AsyncPipe,
   ],
 })
 export class TranslateDesktopComponent extends BaseComponent implements OnInit {
   private store = inject(Store);
   spokenToSigned$ = this.store.select<boolean>(state => state.translate.spokenToSigned);
+  pwa = inject(PwaInstallService);
 
   pages = [
     {key: 'home', route: '/'},
@@ -57,7 +61,7 @@ export class TranslateDesktopComponent extends BaseComponent implements OnInit {
   constructor() {
     super();
 
-    addIcons({language, videocam, cloudUpload, informationCircleOutline});
+    addIcons({language, videocam, cloudUpload, informationCircleOutline, downloadOutline});
   }
 
   ngOnInit(): void {

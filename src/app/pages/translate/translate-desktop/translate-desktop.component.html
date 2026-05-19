@@ -2,6 +2,12 @@
   <app-announcement-banner />
   <ion-toolbar>
     <ion-buttons slot="primary">
+      @if (pwa.isInstallable$ | async) {
+        <ion-button (click)="pwa.install()" color="success" shape="round" fill="solid" style="margin-right: 8px;">
+          <ion-icon name="download-outline" slot="start"></ion-icon>
+          Install App
+        </ion-button>
+      }
       <ion-button routerLink="/about" queryParamsHandling="preserve" color="primary" shape="round" fill="solid">
         {{ 'landing.about.title' | transloco }}
       </ion-button>
