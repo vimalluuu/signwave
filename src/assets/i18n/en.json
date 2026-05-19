@@ -21,6 +21,9 @@
       "text": "Text"
     },
     "swapLanguages": "Swap languages",
+    "mobileView": "Mobile View",
+    "desktopView": "Desktop View",
+    "smartbandView": "Smartband View",
     "spoken-to-signed": {
       "text": "Spoken Language Text",
       "placeholder": "Enter Text",

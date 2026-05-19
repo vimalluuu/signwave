@@ -3,11 +3,24 @@
   <ion-toolbar>
     <ion-buttons slot="primary">
       @if (pwa.isInstallable$ | async) {
-        <ion-button (click)="pwa.install()" color="success" shape="round" fill="solid" style="margin-right: 8px;">
+        <ion-button (click)="pwa.install()" color="success" shape="round" fill="solid" style="margin-right: 8px">
           <ion-icon name="download-outline" slot="start"></ion-icon>
           Install App
         </ion-button>
       }
+      <ion-button (click)="switchToMobile.emit()" color="tertiary" shape="round" fill="solid" style="margin-right: 8px">
+        <ion-icon name="phone-portrait-outline" slot="start"></ion-icon>
+        {{ 'translate.mobileView' | transloco }}
+      </ion-button>
+      <ion-button
+        (click)="switchToSmartband.emit()"
+        color="warning"
+        shape="round"
+        fill="solid"
+        style="margin-right: 8px">
+        <ion-icon name="watch-outline" slot="start"></ion-icon>
+        {{ 'translate.smartbandView' | transloco }}
+      </ion-button>
       <ion-button routerLink="/about" queryParamsHandling="preserve" color="primary" shape="round" fill="solid">
         {{ 'landing.about.title' | transloco }}
       </ion-button>

@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, Output, EventEmitter} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {takeUntil, tap} from 'rxjs/operators';
 import {BaseComponent} from '../../../components/base/base.component';
@@ -12,7 +12,15 @@ import {SpokenToSignedComponent} from '../spoken-to-signed/spoken-to-signed.comp
 import {SignedToSpokenComponent} from '../signed-to-spoken/signed-to-spoken.component';
 import {DropPoseFileComponent} from '../drop-pose-file/drop-pose-file.component';
 import {addIcons} from 'ionicons';
-import {cloudUpload, informationCircleOutline, language, videocam, downloadOutline} from 'ionicons/icons';
+import {
+  cloudUpload,
+  informationCircleOutline,
+  language,
+  videocam,
+  downloadOutline,
+  phonePortraitOutline,
+  watchOutline,
+} from 'ionicons/icons';
 import {RouterLink} from '@angular/router';
 import {LogoComponent} from '../../../components/logo/logo.component';
 import {AnnouncementBannerComponent} from '../../../components/announcement-banner/announcement-banner.component';
@@ -47,6 +55,8 @@ import {AsyncPipe} from '@angular/common';
   ],
 })
 export class TranslateDesktopComponent extends BaseComponent implements OnInit {
+  @Output() switchToMobile = new EventEmitter<void>();
+  @Output() switchToSmartband = new EventEmitter<void>();
   private store = inject(Store);
   spokenToSigned$ = this.store.select<boolean>(state => state.translate.spokenToSigned);
   pwa = inject(PwaInstallService);
@@ -62,7 +72,15 @@ export class TranslateDesktopComponent extends BaseComponent implements OnInit {
   constructor() {
     super();
 
-    addIcons({language, videocam, cloudUpload, informationCircleOutline, downloadOutline});
+    addIcons({
+      language,
+      videocam,
+      cloudUpload,
+      informationCircleOutline,
+      downloadOutline,
+      phonePortraitOutline,
+      watchOutline,
+    });
   }
 
   ngOnInit(): void {

@@ -1,5 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button
+        (click)="switchToDesktop.emit()"
+        color="medium"
+        [attr.aria-label]="'translate.desktopView' | transloco">
+        <ion-icon name="desktop-outline" slot="icon-only" />
+      </ion-button>
+    </ion-buttons>
     <app-language-selectors />
   </ion-toolbar>
 </ion-header>

@@ -1,4 +1,441 @@
+@use '../../../theme/breakpoints' as breakpoints;
+@use '../../../theme/md3-tokens' as md3;
+@use '../../../theme/animations' as anim;
+
 app-translate-mobile,
 app-translate-desktop {
   display: contents;
+}
+
+// Wrapper for the iPhone Mockup
+.iphone-mockup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(133, 0, 233, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(61, 194, 255, 0.08) 0%, transparent 45%), #f5f4f8;
+
+  @media (prefers-color-scheme: dark) {
+    background:
+      radial-gradient(circle at 15% 15%, rgba(133, 0, 233, 0.18) 0%, transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(61, 194, 255, 0.14) 0%, transparent 45%), #0b0a0d;
+  }
+
+  @include anim.animate-fade-in(md3.$md3-duration-long2);
+}
+
+// The iPhone 15 Pro body frame
+.iphone-device {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  background: #111;
+  border-radius: 54px;
+  box-shadow:
+    0px 25px 60px -15px rgba(0, 0, 0, 0.5),
+    0px 0px 0px 4px #2b2b2d,
+    0px 0px 0px 12px #1a1a1c,
+    0px 0px 0px 13px #0f0f10;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 10;
+  border: 12px solid #1a1a1c; // Bezel
+
+  @include anim.animate-scale-in(md3.$md3-duration-long2, 0.05s);
+  transition: box-shadow md3.$md3-duration-medium2 md3.$md3-easing-standard;
+
+  &:hover {
+    box-shadow:
+      0px 35px 80px -10px rgba(133, 0, 233, 0.15),
+      0px 0px 0px 4px #3a3a3d,
+      0px 0px 0px 12px #222224,
+      0px 0px 0px 13px #151516;
+  }
+}
+
+// Inner iPhone Screen
+.iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #faf9fc;
+  border-radius: 42px;
+  overflow: hidden;
+  display: block;
+
+  @media (prefers-color-scheme: dark) {
+    background: #0e0d11;
+  }
+
+  // Force inner mobile component to occupy full screen container
+  app-translate-mobile {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    ion-header {
+      padding-top: 48px;
+      background: var(--ion-toolbar-background, var(--ion-background-color, #faf9fc));
+
+      @media (prefers-color-scheme: dark) {
+        background: var(--ion-toolbar-background, var(--ion-background-color, #121212));
+      }
+    }
+  }
+}
+
+// Sleek Dynamic Island Pill
+.iphone-dynamic-island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 28px;
+  background: #000;
+  border-radius: 14px;
+  z-index: 100;
+  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+// Home Indicator bar at the bottom
+.iphone-home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 135px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 3px;
+  z-index: 100;
+  pointer-events: none;
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+// Speaker Mesh
+.iphone-speaker {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: #222;
+  border-radius: 1.5px;
+  z-index: 101;
+  pointer-events: none;
+}
+
+// Controls container under the device
+.mockup-controls {
+  margin-top: 32px;
+  z-index: 20;
+
+  .close-mockup-btn {
+    --box-shadow: 0 4px 16px rgba(133, 0, 233, 0.08);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    --background: rgba(255, 255, 255, 0.9);
+    --color: #1a1a1c;
+    border: 1px solid rgba(133, 0, 233, 0.15);
+    backdrop-filter: blur(12px);
+    transition: all md3.$md3-duration-short4 md3.$md3-easing-emphasized;
+
+    &:hover {
+      --background: rgba(133, 0, 233, 0.08);
+      --color: var(--ion-color-primary);
+      border-color: var(--ion-color-primary);
+      transform: translateY(-2px);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      --background: rgba(28, 27, 31, 0.9);
+      --color: #faf9fc;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Smartband Mockup Container
+.smartband-mockup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255, 170, 0, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(133, 0, 233, 0.08) 0%, transparent 45%), #f5f4f8;
+
+  @media (prefers-color-scheme: dark) {
+    background:
+      radial-gradient(circle at 15% 15%, rgba(255, 170, 0, 0.15) 0%, transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(133, 0, 233, 0.18) 0%, transparent 45%), #0b0a0d;
+  }
+
+  @include anim.animate-fade-in(md3.$md3-duration-long2);
+}
+
+// Smartband complete device setup
+.smartband-device {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Silicone strap extensions
+.smartband-strap {
+  width: 140px;
+  height: 120px;
+  background: linear-gradient(90deg, #1c1b20 0%, #302e38 50%, #1c1b20 100%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.smartband-strap-top {
+  border-radius: 24px 24px 0 0;
+  margin-bottom: -15px;
+}
+
+.smartband-strap-bottom {
+  border-radius: 0 0 24px 24px;
+  margin-top: -15px;
+}
+
+// Smart fitness band capsule body
+.smartband-body {
+  position: relative;
+  width: 250px;
+  height: 500px;
+  background: linear-gradient(135deg, #2b2a30 0%, #111013 100%);
+  border-radius: 60px;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 10;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 3px #3d3b44,
+    0 0 0 8px #1e1d22,
+    0 0 0 9px #0c0b0e;
+  overflow: hidden;
+  transition: all md3.$md3-duration-medium2 md3.$md3-easing-standard;
+
+  &:hover {
+    box-shadow:
+      0 35px 70px -5px rgba(255, 170, 0, 0.15),
+      0 0 0 3px var(--ion-color-warning),
+      0 0 0 8px #2d2b33,
+      0 0 0 9px #151419;
+  }
+}
+
+// Vertical curved OLED screen
+.smartband-screen {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 50px;
+  padding: 16px 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+// Smartband header/status bar
+.smartband-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+  color: #888;
+  font-size: 11px;
+  padding: 4px 10px 0;
+
+  .smartband-time {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .smartband-header-icons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+
+    .smartband-icon {
+      font-size: 12px;
+      color: #888;
+    }
+  }
+}
+
+// Content area
+.smartband-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+// Neon caption speech display
+.smartband-text-display {
+  background: rgba(255, 170, 0, 0.06);
+  border: 1px dashed rgba(255, 170, 0, 0.2);
+  border-radius: 12px;
+  padding: 8px 10px;
+  text-align: center;
+  max-height: 56px;
+  overflow-y: auto;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+
+  .smartband-speech-caption {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--ion-color-warning);
+    margin: 0;
+    line-height: 1.3;
+    font-weight: 500;
+
+    &.recording {
+      color: #ff5252;
+      animation: pulse-red 1.5s infinite;
+    }
+  }
+}
+
+@keyframes pulse-red {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+// Pose player inside the smartband
+.smartband-avatar-container {
+  flex: 1;
+  width: 100%;
+  max-height: 250px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0d0d0e;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  app-signed-language-output {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    // Scale or adjust children inside output component to fit vertical viewport
+    ::ng-deep {
+      .pose-viewer-card {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+      }
+      .pose-viewer-container {
+        border-radius: 0 !important;
+      }
+      .video-wrapper,
+      video,
+      canvas {
+        height: 100% !important;
+        width: 100% !important;
+        object-fit: cover !important;
+      }
+      // Hide share/download controls inside wristband screen to keep it clean and minimal
+      .viewer-actions,
+      .viewer-selector {
+        display: none !important;
+      }
+    }
+  }
+}
+
+// Smartband voice controls
+.smartband-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 2px;
+
+  .smartband-mic-btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--ion-color-warning);
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(255, 170, 0, 0.35);
+    transition: all 0.3s ease-in-out;
+
+    ion-icon {
+      font-size: 22px;
+    }
+
+    &:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 22px rgba(255, 170, 0, 0.5);
+    }
+
+    &.active {
+      background: #ff5252;
+      color: #fff;
+      box-shadow: 0 0 25px rgba(255, 82, 82, 0.6);
+      animation: pulse-ring-red 1.5s infinite;
+    }
+  }
+}
+
+@keyframes pulse-ring-red {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(255, 82, 82, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+  }
 }

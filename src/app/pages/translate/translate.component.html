@@ -1,5 +1,74 @@
 @if (isMobile.matches) {
   <app-translate-mobile />
 } @else {
-  <app-translate-desktop />
+  @if (mobileOverride === true) {
+    <div class="iphone-mockup-wrapper">
+      <div class="iphone-device">
+        <div class="iphone-dynamic-island"></div>
+        <div class="iphone-speaker"></div>
+        <div class="iphone-screen">
+          <app-translate-mobile (switchToDesktop)="setMobileOverride(false)" />
+        </div>
+        <div class="iphone-home-indicator"></div>
+      </div>
+
+      <div class="mockup-controls">
+        <ion-button (click)="setMobileOverride(false)" color="light" shape="round" class="close-mockup-btn">
+          <ion-icon name="desktop-outline" slot="start"></ion-icon>
+          {{ 'translate.desktopView' | transloco }}
+        </ion-button>
+      </div>
+    </div>
+  } @else if (smartbandOverride === true) {
+    <div class="smartband-mockup-wrapper">
+      <div class="smartband-device">
+        <div class="smartband-strap smartband-strap-top"></div>
+        <div class="smartband-body">
+          <div class="smartband-screen">
+            <div class="smartband-header">
+              <span class="smartband-time">12:45</span>
+              <div class="smartband-header-icons">
+                <ion-icon name="wifi" class="smartband-icon"></ion-icon>
+                <ion-icon name="battery-charging" class="smartband-icon"></ion-icon>
+              </div>
+            </div>
+
+            <div class="smartband-content">
+              <!-- Recognized Speech text ticker at the top -->
+              <div class="smartband-text-display">
+                <p class="smartband-speech-caption" [class.recording]="isSmartbandRecording">
+                  {{ smartbandSpokenText || 'Tap Mic & Speak' }}
+                </p>
+              </div>
+
+              <!-- Sign Language output inside the smartband! -->
+              <div class="smartband-avatar-container">
+                <app-signed-language-output />
+              </div>
+
+              <!-- Recording control panel with mic button -->
+              <div class="smartband-controls">
+                <button
+                  class="smartband-mic-btn"
+                  [class.active]="isSmartbandRecording"
+                  (click)="toggleSmartbandRecording()">
+                  <ion-icon [name]="isSmartbandRecording ? 'stop-circle-outline' : 'mic-outline'"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="smartband-strap smartband-strap-bottom"></div>
+      </div>
+
+      <div class="mockup-controls">
+        <ion-button (click)="smartbandOverride = false" color="light" shape="round" class="close-mockup-btn">
+          <ion-icon name="desktop-outline" slot="start"></ion-icon>
+          {{ 'translate.desktopView' | transloco }}
+        </ion-button>
+      </div>
+    </div>
+  } @else {
+    <app-translate-desktop (switchToMobile)="setMobileOverride(true)" (switchToSmartband)="smartbandOverride = true" />
+  }
 }
