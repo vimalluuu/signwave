@@ -24,7 +24,7 @@
     "generate:privacy": "marked -i PRIVACY.md -o src/app/pages/landing/privacy/privacy.component.html",
     "generate:sitemap": "node tools/sitemap-generator.js",
     "generate:licenses": "npm-license-crawler --json src/assets/licenses.json --onlyDirectDependencies --exclude ios --exclude android --exclude dist --exclude functions",
-    "generate:docs": "cd docs && npm run docs:build && mv .vitepress/dist ../dist/sign-translate/browser/docs",
+    "generate:docs": "cd docs && npm install --no-audit --no-fund && npm run docs:build && mv .vitepress/dist ../dist/sign-translate/browser/docs",
     "build:full": "npm run generate:terms && npm run generate:privacy && npm run build && npm run generate:sitemap && npm run generate:licenses && npm run generate:docs",
     "serve:ssr:sign-translate": "node dist/sign-translate/server/server.mjs"
   },

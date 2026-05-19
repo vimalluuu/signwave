@@ -55,20 +55,25 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
 
   videoEnded = false;
 
-  fpsStats = new Stats();
-  signingStats = new Stats();
+  fpsStats?: Stats;
+  signingStats?: Stats;
 
   constructor() {
     super();
 
     if ('document' in globalThis) {
       this.appRootEl = document.querySelector('ion-app') ?? document.body;
+      this.fpsStats = new Stats();
+      this.signingStats = new Stats();
     }
 
     addIcons({playCircleOutline});
   }
 
   ngAfterViewInit(): void {
+    if (!('document' in globalThis)) {
+      return;
+    }
     const videoEl = this.videoEl();
     this.setCamera();
     this.setStats();
@@ -172,8 +177,8 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
         map(state => state.pose),
         filter(Boolean),
         tap(() => {
-          this.fpsStats.end(); // End previous frame time
-          this.fpsStats.begin(); // Start new frame time
+          this.fpsStats?.end(); // End previous frame time
+          this.fpsStats?.begin(); // Start new frame time
         }),
         takeUntil(this.ngUnsubscribe)
       )
@@ -224,6 +229,9 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
   }
 
   setStats(): void {
+    if (!this.fpsStats || !this.signingStats) {
+      return;
+    }
     this.fpsStats.showPanel(0);
     this.fpsStats.dom.style.position = 'absolute';
     this.statsEl().nativeElement.appendChild(this.fpsStats.dom);
@@ -261,7 +269,9 @@ export class VideoComponent extends BaseComponent implements AfterViewInit {
         map(settings => settings.detectSign),
         distinctUntilChanged(),
         tap(detectSign => {
-          this.signingStats.dom.style.display = detectSign ? 'block' : 'none';
+          if (this.signingStats) {
+            this.signingStats.dom.style.display = detectSign ? 'block' : 'none';
+          }
         }),
         takeUntil(this.ngUnsubscribe)
       )
