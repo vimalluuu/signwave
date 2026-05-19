@@ -1,0 +1,98 @@
+@use '../../../../theme/breakpoints' as breakpoints;
+
+:host > * {
+  display: block;
+  padding: 50px;
+  padding-top: 0;
+
+  @media #{breakpoints.$breakpoint-lt-md} {
+    padding: 50px 25px;
+  }
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  color: var(--ion-text-color, #333);
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--ion-color-primary, #6a1b9a);
+  }
+
+  p {
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.team-card {
+  background: var(--ion-color-step-50, #f9f9f9);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  }
+}
+
+.card-header {
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--ion-color-primary, #6a1b9a);
+  padding-bottom: 1rem;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .role {
+    display: inline-block;
+    background: var(--ion-color-primary, #6a1b9a);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
+.card-body {
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .team-card {
+    background: var(--ion-color-step-100, #1e1e1e);
+    border-color: rgba(255,255,255,0.05);
+  }
+}

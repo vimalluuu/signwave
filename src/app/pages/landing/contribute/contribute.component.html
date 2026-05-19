@@ -1,0 +1,33 @@
+<div class="container">
+  <div id="contribute-header">
+    <h1>Join Our Efforts</h1>
+    <p>
+      Sign Wave is a revolutionary project blending wearable hardware and AI software to break communication barriers. 
+      Whether you're a developer, engineer, or enthusiastic user, we need your help to make this vision a reality!
+    </p>
+    <a href="https://github.com/vimalluuu" target="_blank" rel="noopener">
+      <ion-button shape="round" color="primary">Explore our GitHub</ion-button>
+    </a>
+  </div>
+
+  <div class="cards-container">
+    @for (card of cards; track card) {
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon [name]="card.icon" />
+            {{ card.title }}
+          </ion-card-title>
+          <ion-card-subtitle>{{ card.subtitle }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{ card.content }}</p>
+        </ion-card-content>
+
+        <a href="{{ card.action.url }}" target="_blank">
+          <ion-button fill="clear">{{ card.action.text }}</ion-button>
+        </a>
+      </ion-card>
+    }
+  </div>
+</div>
