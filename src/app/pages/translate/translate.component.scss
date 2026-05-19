@@ -10,9 +10,10 @@ app-translate-desktop {
 // Wrapper for the iPhone Mockup
 .iphone-mockup-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 40px;
   min-height: 100vh;
   width: 100%;
   padding: 40px 20px;
@@ -81,12 +82,32 @@ app-translate-desktop {
     width: 100%;
     overflow: hidden;
 
-    ion-header {
-      padding-top: 48px;
-      background: var(--ion-toolbar-background, var(--ion-background-color, #faf9fc));
+    ::ng-deep {
+      ion-header {
+        padding-top: 54px !important;
+        background: var(--ion-toolbar-background, var(--ion-background-color, #faf9fc)) !important;
 
-      @media (prefers-color-scheme: dark) {
-        background: var(--ion-toolbar-background, var(--ion-background-color, #121212));
+        @media (prefers-color-scheme: dark) {
+          background: var(--ion-toolbar-background, var(--ion-background-color, #121212)) !important;
+        }
+
+        ion-toolbar {
+          --background: transparent !important;
+          padding-top: 4px !important;
+        }
+      }
+
+      ion-footer {
+        padding-bottom: 24px !important;
+        background: var(--ion-toolbar-background, var(--ion-background-color, #faf9fc)) !important;
+
+        @media (prefers-color-scheme: dark) {
+          background: var(--ion-toolbar-background, var(--ion-background-color, #121212)) !important;
+        }
+
+        ion-toolbar {
+          --background: transparent !important;
+        }
       }
     }
   }
@@ -173,9 +194,10 @@ app-translate-desktop {
 // Smartband Mockup Container
 .smartband-mockup-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 40px;
   min-height: 100vh;
   width: 100%;
   padding: 60px 20px;
@@ -437,5 +459,241 @@ app-translate-desktop {
   }
   100% {
     box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+  }
+}
+
+// Health metrics
+.smartband-health-stat {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  color: #ff5252;
+  font-weight: 500;
+  pointer-events: none;
+
+  .pulse-heart {
+    animation: heart-beat 1.2s infinite;
+    display: inline-block;
+  }
+}
+
+@keyframes heart-beat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.15);
+  }
+  40% {
+    transform: scale(1);
+  }
+  55% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.smartband-step-counter {
+  position: absolute;
+  bottom: 66px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  color: #00e676;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  background: rgba(0, 230, 118, 0.08);
+  padding: 3px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 230, 118, 0.15);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+// Interactive Workspace Grid
+.mockup-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mockup-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  max-width: 320px;
+  box-sizing: border-box;
+  z-index: 20;
+
+  @media (max-width: 1200px) {
+    display: none; // Hides sidebars beautifully on smaller viewports
+  }
+}
+
+.sidebar-card {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  font-family: 'Outfit', sans-serif;
+  transition: all 0.3s ease;
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(20, 19, 23, 0.65);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 12px 0 10px;
+    color: #1a1a1c;
+
+    @media (prefers-color-scheme: dark) {
+      color: #faf9fc;
+    }
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #555459;
+    margin: 0 0 20px;
+
+    @media (prefers-color-scheme: dark) {
+      color: #b0afb5;
+    }
+  }
+
+  .sidebar-card-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--ion-color-primary) 0%, #8500e9 100%);
+    text-transform: uppercase;
+  }
+
+  // Smartband themes
+  &.smartband-sidebar-card {
+    .smartband-badge {
+      background: linear-gradient(135deg, #ff9100 0%, #ff3d00 100%) !important;
+    }
+
+    h2 {
+      @media (prefers-color-scheme: dark) {
+        color: #ffaa33;
+      }
+    }
+  }
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .feature-icon {
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  .feature-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #2b2a30;
+    font-weight: 500;
+
+    @media (prefers-color-scheme: dark) {
+      color: #e3e2e8;
+    }
+  }
+}
+
+.guide-step {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border-radius: 50%;
+    background: rgba(133, 0, 233, 0.1);
+    color: var(--ion-color-primary);
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 2px;
+
+    @media (prefers-color-scheme: dark) {
+      background: rgba(133, 0, 233, 0.2);
+      color: #b05cff;
+    }
+
+    &.smartband-step-num {
+      background: rgba(255, 145, 0, 0.1);
+      color: #ff9100;
+
+      @media (prefers-color-scheme: dark) {
+        background: rgba(255, 145, 0, 0.2);
+        color: #ffaa33;
+      }
+    }
+  }
+
+  .step-content {
+    h4 {
+      font-size: 13px;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: #1a1a1c;
+
+      @media (prefers-color-scheme: dark) {
+        color: #faf9fc;
+      }
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 1.45;
+      color: #66656a;
+      margin: 0;
+
+      @media (prefers-color-scheme: dark) {
+        color: #9d9ca2;
+      }
+    }
   }
 }

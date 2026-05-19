@@ -3,69 +3,189 @@
 } @else {
   @if (mobileOverride === true) {
     <div class="iphone-mockup-wrapper">
-      <div class="iphone-device">
-        <div class="iphone-dynamic-island"></div>
-        <div class="iphone-speaker"></div>
-        <div class="iphone-screen">
-          <app-translate-mobile (switchToDesktop)="setMobileOverride(false)" />
+      <!-- Left Column: Description & Features -->
+      <div class="mockup-sidebar mockup-sidebar-left">
+        <div class="sidebar-card">
+          <div class="sidebar-card-badge">PREVIEW STUDIO</div>
+          <h2>Mobile Translation</h2>
+          <p>
+            Experience real-time speech-to-sign translations inside a high-fidelity iPhone 15 Pro mockup. Crafted with
+            fluid native gestures and accessibility at its core.
+          </p>
+
+          <div class="feature-item">
+            <span class="feature-icon">✨</span>
+            <span class="feature-text">Live Avatar Pose Rendering</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🗣️</span>
+            <span class="feature-text">Continuous Speech Recognition</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🌍</span>
+            <span class="feature-text">Dual-Language Selection</span>
+          </div>
         </div>
-        <div class="iphone-home-indicator"></div>
       </div>
 
-      <div class="mockup-controls">
-        <ion-button (click)="setMobileOverride(false)" color="light" shape="round" class="close-mockup-btn">
-          <ion-icon name="desktop-outline" slot="start"></ion-icon>
-          {{ 'translate.desktopView' | transloco }}
-        </ion-button>
+      <!-- Center Column: iPhone Device -->
+      <div class="mockup-center">
+        <div class="iphone-device">
+          <div class="iphone-dynamic-island"></div>
+          <div class="iphone-speaker"></div>
+          <div class="iphone-screen">
+            <app-translate-mobile (switchToDesktop)="setMobileOverride(false)" />
+          </div>
+          <div class="iphone-home-indicator"></div>
+        </div>
+
+        <div class="mockup-controls">
+          <ion-button (click)="setMobileOverride(false)" color="light" shape="round" class="close-mockup-btn">
+            <ion-icon name="desktop-outline" slot="start"></ion-icon>
+            {{ 'translate.desktopView' | transloco }}
+          </ion-button>
+        </div>
+      </div>
+
+      <!-- Right Column: How it Works Guide -->
+      <div class="mockup-sidebar mockup-sidebar-right">
+        <div class="sidebar-card">
+          <div class="sidebar-card-badge">QUICK GUIDE</div>
+          <h2>How It Works</h2>
+
+          <div class="guide-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Choose Languages</h4>
+              <p>Select your source spoken language and target sign language at the top toolbar.</p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Input Words</h4>
+              <p>Type in the footer input box or tap the microphone icon to speak.</p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Visualize Sign</h4>
+              <p>Watch the digital avatar perform high-fidelity sign language translations immediately.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   } @else if (smartbandOverride === true) {
     <div class="smartband-mockup-wrapper">
-      <div class="smartband-device">
-        <div class="smartband-strap smartband-strap-top"></div>
-        <div class="smartband-body">
-          <div class="smartband-screen">
-            <div class="smartband-header">
-              <span class="smartband-time">12:45</span>
-              <div class="smartband-header-icons">
-                <ion-icon name="wifi" class="smartband-icon"></ion-icon>
-                <ion-icon name="battery-charging" class="smartband-icon"></ion-icon>
-              </div>
-            </div>
+      <!-- Left Column: Description & Features -->
+      <div class="mockup-sidebar mockup-sidebar-left">
+        <div class="sidebar-card smartband-sidebar-card">
+          <div class="sidebar-card-badge smartband-badge">WEARABLE COMPANION</div>
+          <h2>Smart Wristband</h2>
+          <p>
+            Designed for on-the-go convenience. Translate spoken conversations into sign language symbols directly on
+            your wrist, providing real-time, glanceable communication.
+          </p>
 
-            <div class="smartband-content">
-              <!-- Recognized Speech text ticker at the top -->
-              <div class="smartband-text-display">
-                <p class="smartband-speech-caption" [class.recording]="isSmartbandRecording">
-                  {{ smartbandSpokenText || 'Tap Mic & Speak' }}
-                </p>
+          <div class="feature-item">
+            <span class="feature-icon">🎙️</span>
+            <span class="feature-text">One-Tap Mic Input Activation</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">⚡</span>
+            <span class="feature-text">Ultra-Low Latency Translation</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🌌</span>
+            <span class="feature-text">Neon OLED Visual Accessibility</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Column: Smartband Capsule -->
+      <div class="mockup-center">
+        <div class="smartband-device">
+          <div class="smartband-strap smartband-strap-top"></div>
+          <div class="smartband-body">
+            <div class="smartband-screen">
+              <div class="smartband-header">
+                <span class="smartband-time">12:45</span>
+                <div class="smartband-header-icons">
+                  <ion-icon name="wifi" class="smartband-icon"></ion-icon>
+                  <ion-icon name="battery-charging" class="smartband-icon"></ion-icon>
+                </div>
               </div>
 
-              <!-- Sign Language output inside the smartband! -->
-              <div class="smartband-avatar-container">
-                <app-signed-language-output />
-              </div>
+              <div class="smartband-content">
+                <!-- Recognized Speech text ticker at the top -->
+                <div class="smartband-text-display">
+                  <p class="smartband-speech-caption" [class.recording]="isSmartbandRecording">
+                    {{ smartbandSpokenText || 'Tap Mic & Speak' }}
+                  </p>
+                </div>
 
-              <!-- Recording control panel with mic button -->
-              <div class="smartband-controls">
-                <button
-                  class="smartband-mic-btn"
-                  [class.active]="isSmartbandRecording"
-                  (click)="toggleSmartbandRecording()">
-                  <ion-icon [name]="isSmartbandRecording ? 'stop-circle-outline' : 'mic-outline'"></ion-icon>
-                </button>
+                <!-- Sign Language output inside the smartband! -->
+                <div class="smartband-avatar-container">
+                  <app-signed-language-output />
+                </div>
+
+                <!-- Recording control panel with mic button -->
+                <div class="smartband-controls">
+                  <button
+                    class="smartband-mic-btn"
+                    [class.active]="isSmartbandRecording"
+                    (click)="toggleSmartbandRecording()">
+                    <ion-icon [name]="isSmartbandRecording ? 'stop-circle-outline' : 'mic-outline'"></ion-icon>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+          <div class="smartband-strap smartband-strap-bottom"></div>
         </div>
-        <div class="smartband-strap smartband-strap-bottom"></div>
+
+        <div class="mockup-controls">
+          <ion-button (click)="smartbandOverride = false" color="light" shape="round" class="close-mockup-btn">
+            <ion-icon name="desktop-outline" slot="start"></ion-icon>
+            {{ 'translate.desktopView' | transloco }}
+          </ion-button>
+        </div>
       </div>
 
-      <div class="mockup-controls">
-        <ion-button (click)="smartbandOverride = false" color="light" shape="round" class="close-mockup-btn">
-          <ion-icon name="desktop-outline" slot="start"></ion-icon>
-          {{ 'translate.desktopView' | transloco }}
-        </ion-button>
+      <!-- Right Column: How it Works Wearable Guide -->
+      <div class="mockup-sidebar mockup-sidebar-right">
+        <div class="sidebar-card smartband-sidebar-card">
+          <div class="sidebar-card-badge smartband-badge">WEARABLE GUIDE</div>
+          <h2>How It Works</h2>
+
+          <div class="guide-step">
+            <div class="step-number smartband-step-num">1</div>
+            <div class="step-content">
+              <h4>Tap the Microphone</h4>
+              <p>Click the circular orange microphone button at the bottom of the band screen.</p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number smartband-step-num">2</div>
+            <div class="step-content">
+              <h4>Speak Clearly</h4>
+              <p>Talk directly into your browser's microphone to begin speech recognition.</p>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="step-number smartband-step-num">3</div>
+            <div class="step-content">
+              <h4>Glanceable Translation</h4>
+              <p>Watch sign language animations and scrolling captions render instantly on the wristband display.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   } @else {
