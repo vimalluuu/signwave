@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'AIzaSyAtVDGmDVCwWunWW2ocgeHWnAsUhHuXvcg',
-    authDomain: 'sign-mt.firebaseapp.com',
-    projectId: 'sign-mt',
-    storageBucket: 'sign-mt.appspot.com',
-    messagingSenderId: '665830225099',
-    appId: '1:665830225099:web:18e0669d5847a4b047974e',
-    measurementId: 'G-1LXY5W5Z9H',
+    apiKey: 'AIzaSyBfrdo6GCygBTl-9Iyd8ckH9mzIcKLiWVY',
+    authDomain: 'signwave-app.firebaseapp.com',
+    projectId: 'signwave-app',
+    storageBucket: 'signwave-app.firebasestorage.app',
+    messagingSenderId: '490919332087',
+    appId: '1:490919332087:web:415eb15b2f189194b4ebf2',
+    measurementId: null,
   },
-  reCAPTCHAKey: '6Ldsxb8oAAAAAGyUZbyd0QruivPSudqAWFygR-4t',
+  reCAPTCHAKey: '6LdPJfIsAAAAAPshmd1Q3Uk12iLetBFl3-IguQ3B',
 };
