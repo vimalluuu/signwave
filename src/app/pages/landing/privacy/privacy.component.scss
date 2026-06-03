@@ -1,5 +1,49 @@
 :host {
   display: block;
-  max-width: min(90%, 1200px);
+  max-width: min(90%, 1280px);
   margin: auto;
+  padding: 4rem 2rem;
+  font-family: 'Geist', sans-serif;
+  color: var(--auralis-text-primary);
+}
+
+h1, h2, h3 {
+  font-family: 'Geist', sans-serif;
+  font-weight: 600;
+  color: var(--auralis-text-primary);
+  margin-top: 2rem;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 2rem;
+}
+
+p, li {
+  color: var(--auralis-text-secondary);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+a {
+  color: var(--auralis-black);
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--auralis-text-secondary);
+  }
+}
+
+strong {
+  color: var(--auralis-text-primary);
+  font-weight: 600;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--auralis-border);
+  margin: 3rem 0;
 }

@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+ion-header {
+  --background: var(--auralis-surface);
+}
+
+ion-title {
+  color: var(--auralis-text-primary);
+  font-family: 'Geist', sans-serif;
+  font-weight: 600;
+
+  &[size='large'] {
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    color: var(--auralis-text-primary);
+  }
+}
+
+ion-list {
+  background: transparent;
+  --background: transparent;
+  margin-bottom: 16px;
+
+  ion-list-header {
+    --background: transparent;
+    --color: var(--auralis-text-secondary);
+    font-family: 'Geist', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-top: 16px;
+  }
+
+  ion-item {
+    --background: var(--auralis-surface);
+    --background-hover: var(--auralis-panel);
+    --color: var(--auralis-text-primary);
+    --border-color: var(--auralis-border);
+    border-radius: 16px;
+    margin-bottom: 8px;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+
+    ion-icon[slot='start'] {
+      color: var(--auralis-text-secondary) !important;
+      --color: var(--auralis-text-secondary) !important;
+    }
+
+    &:hover {
+      --background: var(--auralis-panel);
+    }
+  }
+}

@@ -1,20 +1,40 @@
 @use '../../../../../theme/breakpoints' as breakpoints;
 
 .cards-container {
-  border-radius: 14px;
+  border-radius: 24px;
   overflow: hidden;
+  background: var(--auralis-surface);
+  border: 1px solid var(--auralis-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 
   > div {
     flex: 1;
 
     &:first-child {
-      padding: 2rem;
+      padding: 3rem;
+      color: var(--auralis-text-primary);
+
+      h2, h3 {
+        font-family: 'Geist', sans-serif;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--auralis-text-primary);
+        font-size: 32px;
+      }
+
+      p {
+        color: var(--auralis-text-secondary);
+        line-height: 1.6;
+        font-size: 16px;
+      }
     }
 
     &.video-container {
-      background: var(--ion-color-light);
+      background: var(--auralis-panel);
       display: flex;
       align-items: center;
+      border-left: 1px solid var(--auralis-border);
+
       @media #{breakpoints.$breakpoint-lt-sm} {
         max-width: 512px;
       }
@@ -23,11 +43,20 @@
 }
 
 pre {
-  background: #282828;
-  color: #66ff66;
+  background: #fdf8f8;
+  color: var(--auralis-text-primary);
   border-radius: 16px;
   padding: 32px;
   direction: ltr;
+  border: 1px solid var(--auralis-border);
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'Geist', monospace;
+
+  // Syntax highlight colors
+  .keyword { color: #000000; font-weight: 600; }
+  .string  { color: #6B6B6B; }
+  .comment { color: #868381; font-style: italic; }
 }
 
 video {
@@ -36,31 +65,16 @@ video {
   width: 100%;
   aspect-ratio: 1 / 1;
   max-width: 512px;
+  border-radius: 12px;
 }
 
 .container {
-  --container-background: white;
-  @media (prefers-color-scheme: dark) {
-    --container-background: black;
-  }
+  --container-background: var(--auralis-surface);
 
   position: relative;
   box-sizing: border-box;
   background: var(--container-background);
   background-clip: padding-box;
-  border: solid 2px transparent;
-  border-radius: 1em;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    margin: -2px;
-    border-radius: inherit;
-    background: linear-gradient(to bottom left, var(--ion-color-primary), var(--container-background));
-  }
+  border: solid 1px var(--auralis-border);
+  border-radius: 24px;
 }

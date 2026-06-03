@@ -2,26 +2,40 @@
 
 h2 {
   text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--auralis-text-primary);
+  margin-bottom: 24px;
 }
 
 p.subtitle {
   max-width: 510px;
   margin: auto;
   text-align: center;
+  color: var(--auralis-text-secondary);
+  font-family: 'Geist', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .slides {
-  background-color: var(--ion-color-light);
-  border-radius: 16px;
-  margin-top: 32px;
+  background: var(--auralis-panel);
+  border: 1px solid var(--auralis-border);
+  border-radius: 24px;
+  margin-top: 48px;
   overflow: hidden;
 }
 
 ion-card {
   align-items: center;
   height: 550px;
-  border-radius: 14px;
+  border-radius: 16px;
   margin: 8px;
+  background: var(--auralis-surface);
+  border: 1px solid var(--auralis-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 
   @media #{breakpoints.$breakpoint-gt-sm} {
     display: flex;
@@ -34,7 +48,7 @@ ion-card {
 
 .navigation-buttons {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   padding: 8px;
   padding-top: 0;
   min-width: 600px;
@@ -44,26 +58,33 @@ ion-card {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 16px;
-    border-radius: 14px;
-    font-size: 16px;
+    gap: 12px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
     width: 100%;
     height: 120px;
-
-    background-color: var(--ion-color-light);
-    color: var(--ion-color-light-contrast);
+    background: transparent;
+    color: var(--auralis-text-secondary);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
 
     > * {
       max-width: 120px;
     }
 
+    &:hover {
+      background: var(--auralis-surface);
+      color: var(--auralis-text-primary);
+    }
+
     &.selected {
-      background-color: white;
-      color: black;
-      @media (prefers-color-scheme: dark) {
-        background-color: var(--ion-color-dark);
-        color: var(--ion-color-dark-contrast);
-      }
+      background: var(--auralis-surface);
+      color: var(--auralis-text-primary);
+      border-color: var(--auralis-border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
   }
 }
@@ -84,6 +105,12 @@ ion-card-content {
     @media #{breakpoints.$breakpoint-lt-md} {
       padding: 32px;
     }
+
+    p {
+      color: var(--auralis-text-secondary);
+      font-size: 16px;
+      line-height: 1.6;
+    }
   }
 
   .graphic {
@@ -101,6 +128,10 @@ ion-card-content {
     .phone-screenshot {
       max-width: calc(100% - 64px);
       margin: auto;
+      border-radius: 16px;
+      border: 1px solid var(--auralis-border);
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1);
+
       @media #{breakpoints.$breakpoint-gt-sm} {
         max-width: 350px;
         margin-top: 64px;
@@ -111,6 +142,10 @@ ion-card-content {
     .github-screenshot {
       margin: 32px;
       max-width: calc(100% - 64px);
+      border-radius: 12px;
+      border: 1px solid var(--auralis-border);
+      box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.05);
+
       @media #{breakpoints.$breakpoint-gt-sm} {
         margin: 64px;
       }
@@ -118,7 +153,11 @@ ion-card-content {
   }
 
   ion-card-title {
-    font-size: 2em;
+    font-size: 32px;
+    font-family: 'Geist', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--auralis-text-primary);
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -127,6 +166,7 @@ ion-card-content {
 
   p {
     max-width: 600px;
+    color: var(--auralis-text-secondary);
   }
 
   app-lazy-map {

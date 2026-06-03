@@ -2,11 +2,18 @@
 
 h2 {
   text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--auralis-text-primary);
+  margin-bottom: 32px;
 }
 
 .cards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 
   @media #{breakpoints.$breakpoint-lt-md} {
     grid-template-columns: repeat(2, 1fr);
@@ -17,12 +24,44 @@ h2 {
   }
 }
 
+ion-card {
+  background: var(--auralis-surface);
+  border: 1px solid var(--auralis-border);
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  }
+}
+
 ion-card-title {
   display: flex;
   align-items: center;
+  color: var(--auralis-text-primary);
+  font-family: 'Geist', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
 
   a {
     flex-grow: 1;
     text-align: end;
+    color: var(--auralis-text-secondary);
+    font-size: 16px;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--auralis-text-primary);
+    }
   }
+}
+
+ion-card-content {
+  color: var(--auralis-text-secondary);
+  font-family: 'Geist', sans-serif;
+  font-size: 16px;
+  margin-top: 8px;
 }

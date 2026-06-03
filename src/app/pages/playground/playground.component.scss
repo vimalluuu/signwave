@@ -1,15 +1,44 @@
+ion-header {
+  --background: var(--auralis-surface);
+
+  ion-title {
+    font-family: 'Geist', sans-serif;
+    font-weight: 600;
+    color: var(--auralis-text-primary);
+  }
+
+  ion-toolbar {
+    --background: var(--auralis-surface);
+    border-bottom: 1px solid var(--auralis-border);
+  }
+}
+
+ion-content {
+  --background: var(--auralis-bg);
+}
+
 #video-page-container {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: center;
+  background: var(--auralis-bg);
 }
 
 app-video {
-  border-radius: 8px;
+  border-radius: 24px;
+  border: 1px solid var(--auralis-border);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  background: var(--auralis-surface);
 
   height: 720px;
   max-height: 45vw;
+
+  &:hover {
+    box-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.15);
+  }
 
   &.aspect-1-1 {
     width: 720px;

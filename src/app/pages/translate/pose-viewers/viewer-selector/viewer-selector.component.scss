@@ -1,6 +1,20 @@
 ion-fab#viewer-selector {
   top: 0;
   right: 0;
+
+  ion-fab-button {
+    --background: rgba(133, 0, 233, 0.2);
+    --background-hover: rgba(133, 0, 233, 0.35);
+    --color: #c384f2;
+    --border-radius: 12px;
+    border: 1px solid rgba(133, 0, 233, 0.4);
+    box-shadow: 0 0 16px rgba(133, 0, 233, 0.2);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 0 24px rgba(133, 0, 233, 0.4);
+    }
+  }
 }
 
 ::ng-deep html[dir='rtl'] ion-fab#viewer-selector {

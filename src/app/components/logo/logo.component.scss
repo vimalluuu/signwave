@@ -1,13 +1,12 @@
 :host {
   display: flex;
-  align-items: end;
-  font-size: 1.2em;
+  align-items: center;
   gap: 8px;
 }
 
 a {
   display: flex;
-  align-items: end;
+  align-items: center;
   color: unset;
   text-decoration: none;
 }
@@ -24,7 +23,14 @@ img {
 }
 
 .logo-text {
+  font-family: 'Geist', sans-serif;
   font-weight: 700;
-  font-size: 1.25em;
-  letter-spacing: -0.5px;
+  font-size: 20px;
+  letter-spacing: -0.04em;
+  color: var(--auralis-text-primary);
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }

@@ -1,8 +1,29 @@
 .container {
   padding: 16px;
+  background: #07060d;
+  min-height: 100%;
+
+  h1, h2, h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c384f2 0%, #8500e9 50%, #3dc2ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 app-benchmark-item {
   display: inline-block;
   margin: 0 8px;
+}
+
+ion-content {
+  --background: #07060d;
+}
+
+ion-header ion-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: #f0eeff;
 }

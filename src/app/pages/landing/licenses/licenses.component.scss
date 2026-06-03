@@ -2,9 +2,33 @@
   max-width: 960px;
   display: block;
   margin: 8px auto;
+  padding: 1rem 2rem;
+  font-family: 'Geist', sans-serif;
+  color: var(--auralis-text-primary);
+}
+
+h1, h2, h3 {
+  font-family: 'Geist', sans-serif;
+  font-weight: 600;
+  color: var(--auralis-text-primary);
+  letter-spacing: -0.02em;
+}
+
+mat-tree {
+  background: transparent;
+  color: var(--auralis-text-primary);
 }
 
 mat-tree-node {
+  color: var(--auralis-text-secondary);
+  border-bottom: 1px solid var(--auralis-border);
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--auralis-surface);
+    color: var(--auralis-text-primary);
+  }
+
   :nth-child(2) {
     flex: 1;
     overflow: hidden;
@@ -13,4 +37,12 @@ mat-tree-node {
   }
 
   margin-inline-end: 40px;
+}
+
+a {
+  color: var(--auralis-black);
+
+  &:hover {
+    color: var(--auralis-text-secondary);
+  }
 }

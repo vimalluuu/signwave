@@ -19,14 +19,8 @@ app-translate-desktop {
   padding: 40px 20px;
   box-sizing: border-box;
   background:
-    radial-gradient(circle at 15% 15%, rgba(133, 0, 233, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 85% 85%, rgba(61, 194, 255, 0.08) 0%, transparent 45%), #f5f4f8;
-
-  @media (prefers-color-scheme: dark) {
-    background:
-      radial-gradient(circle at 15% 15%, rgba(133, 0, 233, 0.18) 0%, transparent 45%),
-      radial-gradient(circle at 85% 85%, rgba(61, 194, 255, 0.14) 0%, transparent 45%), #0b0a0d;
-  }
+    radial-gradient(circle at 15% 15%, rgba(0, 102, 255, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(0, 204, 102, 0.08) 0%, transparent 45%), var(--auralis-bg);
 
   @include anim.animate-fade-in(md3.$md3-duration-long2);
 }
@@ -36,13 +30,13 @@ app-translate-desktop {
   position: relative;
   width: 390px;
   height: 844px;
-  background: #111;
+  background: #fdfdfd;
   border-radius: 54px;
   box-shadow:
-    0px 25px 60px -15px rgba(0, 0, 0, 0.5),
-    0px 0px 0px 4px #2b2b2d,
-    0px 0px 0px 12px #1a1a1c,
-    0px 0px 0px 13px #0f0f10;
+    0px 25px 60px -15px rgba(0, 0, 0, 0.15),
+    0px 0px 0px 4px #e5e5e5,
+    0px 0px 0px 12px #d1d1d1,
+    0px 0px 0px 13px #c4c4c4;
   overflow: hidden;
   box-sizing: border-box;
   z-index: 10;
@@ -53,10 +47,10 @@ app-translate-desktop {
 
   &:hover {
     box-shadow:
-      0px 35px 80px -10px rgba(133, 0, 233, 0.15),
-      0px 0px 0px 4px #3a3a3d,
-      0px 0px 0px 12px #222224,
-      0px 0px 0px 13px #151516;
+      0px 35px 80px -10px rgba(0, 0, 0, 0.2),
+      0px 0px 0px 4px #e5e5e5,
+      0px 0px 0px 12px #d1d1d1,
+      0px 0px 0px 13px #c4c4c4;
   }
 }
 
@@ -65,14 +59,10 @@ app-translate-desktop {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #faf9fc;
+  background: var(--auralis-bg);
   border-radius: 42px;
   overflow: hidden;
   display: block;
-
-  @media (prefers-color-scheme: dark) {
-    background: #0e0d11;
-  }
 
   // Force inner mobile component to occupy full screen container
   app-translate-mobile {
@@ -85,28 +75,24 @@ app-translate-desktop {
     ::ng-deep {
       ion-header {
         padding-top: 54px !important;
-        background: var(--ion-toolbar-background, var(--ion-background-color, #faf9fc)) !important;
-
-        @media (prefers-color-scheme: dark) {
-          background: var(--ion-toolbar-background, var(--ion-background-color, #121212)) !important;
-        }
+        background: var(--auralis-surface) !important;
+        border-bottom: 1px solid var(--auralis-border);
 
         ion-toolbar {
           --background: transparent !important;
           padding-top: 4px !important;
+          border-bottom: none;
         }
       }
 
       ion-footer {
         padding-bottom: 24px !important;
-        background: var(--ion-toolbar-background, var(--ion-background-color, #faf9fc)) !important;
-
-        @media (prefers-color-scheme: dark) {
-          background: var(--ion-toolbar-background, var(--ion-background-color, #121212)) !important;
-        }
+        background: var(--auralis-surface) !important;
+        border-top: 1px solid var(--auralis-border);
 
         ion-toolbar {
           --background: transparent !important;
+          border-top: none;
         }
       }
     }
@@ -141,10 +127,6 @@ app-translate-desktop {
   border-radius: 3px;
   z-index: 100;
   pointer-events: none;
-
-  @media (prefers-color-scheme: dark) {
-    background: rgba(255, 255, 255, 0.4);
-  }
 }
 
 // Speaker Mesh
@@ -167,26 +149,19 @@ app-translate-desktop {
   z-index: 20;
 
   .close-mockup-btn {
-    --box-shadow: 0 4px 16px rgba(133, 0, 233, 0.08);
-    font-family: 'Outfit', sans-serif;
+    --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    font-family: 'Geist', sans-serif;
     font-weight: 500;
-    --background: rgba(255, 255, 255, 0.9);
-    --color: #1a1a1c;
-    border: 1px solid rgba(133, 0, 233, 0.15);
-    backdrop-filter: blur(12px);
+    --background: var(--auralis-surface);
+    --color: var(--auralis-text-primary);
+    border: 1px solid var(--auralis-border);
+    border-radius: 9999px;
     transition: all md3.$md3-duration-short4 md3.$md3-easing-emphasized;
 
     &:hover {
-      --background: rgba(133, 0, 233, 0.08);
-      --color: var(--ion-color-primary);
-      border-color: var(--ion-color-primary);
+      --background: var(--auralis-panel);
       transform: translateY(-2px);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      --background: rgba(28, 27, 31, 0.9);
-      --color: #faf9fc;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
   }
 }
@@ -203,14 +178,8 @@ app-translate-desktop {
   padding: 60px 20px;
   box-sizing: border-box;
   background:
-    radial-gradient(circle at 15% 15%, rgba(255, 170, 0, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 85% 85%, rgba(133, 0, 233, 0.08) 0%, transparent 45%), #f5f4f8;
-
-  @media (prefers-color-scheme: dark) {
-    background:
-      radial-gradient(circle at 15% 15%, rgba(255, 170, 0, 0.15) 0%, transparent 45%),
-      radial-gradient(circle at 85% 85%, rgba(133, 0, 233, 0.18) 0%, transparent 45%), #0b0a0d;
-  }
+    radial-gradient(circle at 15% 15%, rgba(255, 100, 0, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(133, 0, 233, 0.08) 0%, transparent 45%), var(--auralis-bg);
 
   @include anim.animate-fade-in(md3.$md3-duration-long2);
 }
@@ -228,8 +197,8 @@ app-translate-desktop {
 .smartband-strap {
   width: 160px;
   height: 140px;
-  background: linear-gradient(90deg, #1c1b20 0%, #302e38 50%, #1c1b20 100%);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, #d1d1d1 0%, #e5e5e5 50%, #d1d1d1 100%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   z-index: 1;
 }
 
@@ -248,26 +217,18 @@ app-translate-desktop {
   position: relative;
   width: 280px;
   height: 560px;
-  background: linear-gradient(135deg, #2b2a30 0%, #111013 100%);
+  background: linear-gradient(135deg, #fdfdfd 0%, #e5e5e5 100%);
   border-radius: 60px;
   padding: 10px;
   box-sizing: border-box;
   z-index: 10;
   box-shadow:
-    0 25px 50px -12px rgba(0, 0, 0, 0.5),
-    0 0 0 3px #3d3b44,
-    0 0 0 8px #1e1d22,
-    0 0 0 9px #0c0b0e;
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 3px #d1d1d1,
+    0 0 0 8px #c4c4c4,
+    0 0 0 9px #b3b3b3;
   overflow: hidden;
   transition: all md3.$md3-duration-medium2 md3.$md3-easing-standard;
-
-  &:hover {
-    box-shadow:
-      0 35px 70px -5px rgba(255, 170, 0, 0.15),
-      0 0 0 3px var(--ion-color-warning),
-      0 0 0 8px #2d2b33,
-      0 0 0 9px #151419;
-  }
 }
 
 // Vertical curved OLED screen
@@ -282,7 +243,7 @@ app-translate-desktop {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 // Smartband header/status bar
@@ -290,7 +251,7 @@ app-translate-desktop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Geist', sans-serif;
   color: #888;
   font-size: 11px;
   padding: 4px 10px 0;
@@ -324,8 +285,8 @@ app-translate-desktop {
 
 // Neon caption speech display
 .smartband-text-display {
-  background: rgba(255, 170, 0, 0.06);
-  border: 1px dashed rgba(255, 170, 0, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   padding: 8px 10px;
   text-align: center;
@@ -335,9 +296,9 @@ app-translate-desktop {
   box-sizing: border-box;
 
   .smartband-speech-caption {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-size: 12px;
-    color: var(--ion-color-warning);
+    color: #fff;
     margin: 0;
     line-height: 1.3;
     font-weight: 500;
@@ -350,15 +311,9 @@ app-translate-desktop {
 }
 
 @keyframes pulse-red {
-  0% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.6;
-  }
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
 }
 
 // Pose player inside the smartband
@@ -380,7 +335,6 @@ app-translate-desktop {
     width: 100%;
     height: 100%;
 
-    // Scale or adjust children inside output component to fit vertical viewport
     ::ng-deep {
       .pose-viewer-card {
         background: transparent !important;
@@ -401,7 +355,6 @@ app-translate-desktop {
         width: 100% !important;
         object-fit: cover !important;
       }
-      // Hide share/download controls inside wristband screen to keep it clean and minimal
       .viewer-actions,
       .viewer-selector {
         display: none !important;
@@ -424,12 +377,12 @@ app-translate-desktop {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: var(--ion-color-warning);
+    background: #fff;
     color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 15px rgba(255, 170, 0, 0.35);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease-in-out;
 
     ion-icon {
@@ -438,7 +391,6 @@ app-translate-desktop {
 
     &:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 22px rgba(255, 170, 0, 0.5);
     }
 
     &.active {
@@ -451,15 +403,9 @@ app-translate-desktop {
 }
 
 @keyframes pulse-ring-red {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 12px rgba(255, 82, 82, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(255, 82, 82, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 82, 82, 0); }
 }
 
 // Health metrics
@@ -479,21 +425,11 @@ app-translate-desktop {
 }
 
 @keyframes heart-beat {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(1.15);
-  }
-  40% {
-    transform: scale(1);
-  }
-  55% {
-    transform: scale(1.15);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  40% { transform: scale(1); }
+  55% { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
 
 .smartband-step-counter {
@@ -506,7 +442,7 @@ app-translate-desktop {
   gap: 4px;
   font-size: 9px;
   color: #00e676;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 500;
   background: rgba(0, 230, 118, 0.08);
   padding: 3px 8px;
@@ -538,70 +474,53 @@ app-translate-desktop {
 }
 
 .sidebar-card {
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 32px;
   padding: 38px;
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  font-family: 'Outfit', sans-serif;
+    0 24px 48px -12px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  font-family: 'Geist', sans-serif;
   transition: all 0.3s ease;
-
-  @media (prefers-color-scheme: dark) {
-    background: rgba(20, 19, 23, 0.65);
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow:
-      0 20px 40px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
 
   h2 {
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 600;
     margin: 12px 0 10px;
-    color: #1a1a1c;
-
-    @media (prefers-color-scheme: dark) {
-      color: #faf9fc;
-    }
+    color: var(--auralis-text-primary);
+    letter-spacing: -0.02em;
   }
 
   p {
     font-size: 15px;
     line-height: 1.55;
-    color: #555459;
+    color: var(--auralis-text-secondary);
     margin: 0 0 20px;
-
-    @media (prefers-color-scheme: dark) {
-      color: #b0afb5;
-    }
   }
 
   .sidebar-card-badge {
     display: inline-block;
-    padding: 4px 10px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    border-radius: 8px;
-    color: #fff;
-    background: linear-gradient(135deg, var(--ion-color-primary) 0%, #8500e9 100%);
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    border-radius: 9999px;
+    color: var(--auralis-white);
+    background: var(--auralis-black);
     text-transform: uppercase;
   }
 
   // Smartband themes
   &.smartband-sidebar-card {
     .smartband-badge {
-      background: linear-gradient(135deg, #ff9100 0%, #ff3d00 100%) !important;
+      background: #ff5a00 !important;
     }
 
     h2 {
-      @media (prefers-color-scheme: dark) {
-        color: #ffaa33;
-      }
+      color: #ff5a00;
     }
   }
 }
@@ -620,17 +539,14 @@ app-translate-desktop {
     font-size: 16px;
     line-height: 1;
     margin-top: 2px;
+    color: var(--auralis-text-secondary);
   }
 
   .feature-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    color: #2b2a30;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    color: var(--auralis-text-primary);
     font-weight: 500;
-
-    @media (prefers-color-scheme: dark) {
-      color: #e3e2e8;
-    }
   }
 }
 
@@ -651,49 +567,33 @@ app-translate-desktop {
     height: 24px;
     min-width: 24px;
     border-radius: 50%;
-    background: rgba(133, 0, 233, 0.1);
-    color: var(--ion-color-primary);
-    font-size: 11px;
-    font-weight: 700;
+    background: var(--auralis-panel);
+    color: var(--auralis-text-primary);
+    font-size: 12px;
+    font-weight: 600;
     margin-top: 2px;
-
-    @media (prefers-color-scheme: dark) {
-      background: rgba(133, 0, 233, 0.2);
-      color: #b05cff;
-    }
+    border: 1px solid var(--auralis-border);
 
     &.smartband-step-num {
-      background: rgba(255, 145, 0, 0.1);
-      color: #ff9100;
-
-      @media (prefers-color-scheme: dark) {
-        background: rgba(255, 145, 0, 0.2);
-        color: #ffaa33;
-      }
+      background: rgba(255, 90, 0, 0.1);
+      color: #ff5a00;
+      border-color: rgba(255, 90, 0, 0.2);
     }
   }
 
   .step-content {
     h4 {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       margin: 0 0 4px;
-      color: #1a1a1c;
-
-      @media (prefers-color-scheme: dark) {
-        color: #faf9fc;
-      }
+      color: var(--auralis-text-primary);
     }
 
     p {
-      font-size: 12px;
-      line-height: 1.45;
-      color: #66656a;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--auralis-text-secondary);
       margin: 0;
-
-      @media (prefers-color-scheme: dark) {
-        color: #9d9ca2;
-      }
     }
   }
 }

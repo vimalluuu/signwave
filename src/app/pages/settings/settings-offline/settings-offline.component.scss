@@ -1,5 +1,7 @@
 mat-tree {
-  background: none;
+  background: transparent;
+  font-family: 'Geist', sans-serif;
+  color: var(--auralis-text-primary);
 }
 
 .node-label {
@@ -7,15 +9,18 @@ mat-tree {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--auralis-text-primary);
 }
 
 .folder {
   display: flex;
   align-items: center;
+  color: var(--auralis-text-secondary);
 }
 
 mat-progress-spinner {
   margin: 0 10px;
+  --mdc-circular-progress-active-indicator-color: var(--auralis-black);
 }
 
 mat-nested-tree-node mat-nested-tree-node {
@@ -25,4 +30,14 @@ mat-nested-tree-node mat-nested-tree-node {
 mat-nested-tree-node mat-nested-tree-node,
 mat-nested-tree-node mat-tree-node {
   padding-inline-start: 20px;
+}
+
+mat-tree-node {
+  color: var(--auralis-text-secondary);
+  border-bottom: 1px solid var(--auralis-border);
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--auralis-surface);
+  }
 }

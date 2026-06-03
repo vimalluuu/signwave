@@ -4,6 +4,23 @@ app-signed-language-output {
   height: 100%;
 }
 
-ion-footer.signed-to-spoken {
-  box-shadow: none;
+ion-footer {
+  --background: var(--auralis-surface);
+  border-top: 1px solid var(--auralis-border);
+
+  &.signed-to-spoken {
+    box-shadow: none;
+  }
+}
+
+ion-header {
+  --background: var(--auralis-surface);
+
+  ion-toolbar {
+    --background: var(--auralis-surface);
+  }
+}
+
+ion-content {
+  --background: var(--auralis-bg);
 }

@@ -9,40 +9,11 @@
 }
 
 ion-content {
-  --background: radial-gradient(circle at 15% 15%, rgba(133, 0, 233, 0.06) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(61, 194, 255, 0.05) 0%, transparent 45%),
-                #faf9fc;
-
-  @media (prefers-color-scheme: dark) {
-    --background: radial-gradient(circle at 15% 15%, rgba(133, 0, 233, 0.16) 0%, transparent 45%),
-                  radial-gradient(circle at 85% 85%, rgba(61, 194, 255, 0.12) 0%, transparent 45%),
-                  #0e0d11;
-  }
+  --background: var(--auralis-bg);
 }
 
 .container {
   flex: 1;
-}
-
-// Header background with gradient fade
-@media #{breakpoints.$breakpoint-gt-xs} {
-  .container::before {
-    background: linear-gradient(
-      135deg,
-      var(--app-tinted-background-color) 0%,
-      rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.04) 50%,
-      transparent 100%
-    );
-    border-bottom: 1px solid rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.12);
-    content: '';
-    display: block;
-    height: 106px;
-    width: 100%;
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    @include anim.animate-fade-in(md3.$md3-duration-long2);
-  }
 }
 
 // Container
@@ -53,7 +24,7 @@ ion-content {
 
   @media #{breakpoints.$breakpoint-gt-md} {
     padding: 48px;
-    padding-top: 0;
+    padding-top: 24px;
     padding-bottom: 16px;
   }
 
@@ -64,7 +35,7 @@ ion-content {
   // Input mode button group
   #input-mode-group {
     height: 68px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Geist', sans-serif;
     align-items: center;
     display: flex;
     gap: 0.75em;
@@ -78,17 +49,17 @@ ion-content {
     }
   }
 
-  // Translation card with premium glassmorphism styling
+  // Translation card with Auralis glassmorphism styling
   #translation-card {
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(24px) saturate(140%);
     -webkit-backdrop-filter: blur(24px) saturate(140%);
-    border: 1px solid rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     width: 100%;
     height: 100%;
     box-shadow:
-      0 12px 40px 0 rgba(133, 0, 233, 0.04),
-      0 0 0 1px rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.08);
+      0 48px 96px -24px rgba(0, 0, 0, 0.05),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
     transition:
       box-shadow md3.$md3-duration-medium2 md3.$md3-easing-standard,
       transform md3.$md3-duration-medium2 md3.$md3-easing-standard;
@@ -96,70 +67,8 @@ ion-content {
     position: relative;
     overflow: hidden;
 
-    // Animated top gradient bar
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(
-        90deg,
-        rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.9) 0%,
-        rgba(var(--ion-color-secondary-rgb, 156, 39, 176), 0.7) 25%,
-        rgba(var(--ion-color-tertiary-rgb, 255, 193, 7), 0.9) 50%,
-        rgba(var(--ion-color-secondary-rgb, 156, 39, 176), 0.7) 75%,
-        rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.9) 100%
-      );
-      background-size: 200% 100%;
-      animation: gradientShift 3s ease-in-out infinite;
-      z-index: 10;
-      box-shadow: 0 2px 8px rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.3);
-    }
-
-    // Radial gradient glow effect on hover
-    &::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(
-        circle,
-        rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.15) 0%,
-        rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.05) 30%,
-        transparent 70%
-      );
-      opacity: 0;
-      transition: opacity md3.$md3-duration-medium4 md3.$md3-easing-standard;
-      pointer-events: none;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      background: rgba(28, 27, 31, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow:
-        0 12px 40px 0 rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.05);
-    }
-
-    @media #{breakpoints.$breakpoint-gt-xs} {
-      &:hover {
-        box-shadow:
-          0 24px 48px 0 rgba(133, 0, 233, 0.08),
-          0 0 0 1px rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.2);
-        transform: translateY(-4px);
-
-        &::after {
-          opacity: 1;
-        }
-      }
-    }
-
     @media #{breakpoints.$breakpoint-gt-md} {
-      border-radius: md3.$md3-radius-xl;
+      border-radius: 32px;
     }
 
     app-language-selectors {
@@ -184,7 +93,7 @@ ntkme-github-button {
   font-family: monospace;
 }
 
-// Privacy disclaimer with gradient background
+// Privacy disclaimer
 .disclaimer {
   display: flex;
   align-items: center;
@@ -193,48 +102,34 @@ ntkme-github-button {
   text-align: end;
   margin-left: auto;
   max-width: max-content;
-  padding: 10px 14px;
-  background: linear-gradient(
-    135deg,
-    rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.08) 0%,
-    rgba(var(--ion-color-secondary-rgb, 156, 39, 176), 0.05) 100%
-  );
-  border-radius: md3.$md3-radius;
-  border: 1px solid rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.15);
+  padding: 10px 16px;
+  background: var(--auralis-surface);
+  border-radius: 9999px;
+  border: 1px solid var(--auralis-border);
   transition: all md3.$md3-duration-short4 md3.$md3-easing-emphasized;
 
   &:hover {
-    background: linear-gradient(
-      135deg,
-      rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.12) 0%,
-      rgba(var(--ion-color-secondary-rgb, 156, 39, 176), 0.08) 100%
-    );
-    border-color: rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.25);
+    background: var(--auralis-panel);
   }
 
   &-icon {
     font-size: 18px;
-    color: rgba(var(--ion-color-primary-rgb, 66, 133, 244), 0.8);
+    color: var(--auralis-text-secondary);
     flex-shrink: 0;
   }
 
   &-text {
-    color: rgba(0, 0, 0, 0.7);
-
-    @media (prefers-color-scheme: dark) {
-      color: rgba(255, 255, 255, 0.75);
-    }
+    color: var(--auralis-text-primary);
   }
 
   &-link {
-    color: var(--ion-color-primary);
-    text-decoration: none;
+    color: var(--auralis-black);
+    text-decoration: underline;
     font-weight: 500;
     transition: opacity md3.$md3-duration-short4 md3.$md3-easing-standard;
 
     &:hover {
       opacity: 0.8;
-      text-decoration: underline;
     }
   }
 }

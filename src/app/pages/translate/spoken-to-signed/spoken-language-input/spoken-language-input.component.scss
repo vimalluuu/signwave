@@ -3,6 +3,8 @@
   height: 100%;
   padding: 20px 24px;
   flex: 1;
+  color: var(--auralis-text-primary);
+  font-family: 'Geist', sans-serif;
 
   > .actions-row {
     display: flex;
@@ -23,6 +25,13 @@
 
     a {
       cursor: pointer;
+      color: var(--auralis-black);
+      text-decoration: underline;
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--auralis-text-secondary);
+      }
     }
   }
 }
@@ -39,6 +48,7 @@
   line-height: 40px;
   padding-inline: 10px;
   white-space: nowrap;
+  color: var(--auralis-text-secondary);
 }
 
 /* Numbers should always be left-to-right */
@@ -51,17 +61,18 @@ ion-textarea#mobile {
   margin-top: 6px;
   margin-bottom: 6px;
   border-radius: 20px;
-  --padding-start: 10px;
+  --padding-start: 12px;
   --padding-bottom: var(--padding-top);
   --highlight-color: var(--ion-color-primary);
+  --background: var(--auralis-surface);
+  --color: var(--auralis-text-primary);
 
   &.sc-ion-textarea-ios-h {
     /* Address strange height on iOS */
     min-height: initial;
 
-    background-color: white;
-    @media (prefers-color-scheme: dark) {
-      background-color: #202124;
-    }
+    background-color: var(--auralis-surface);
+    border: 1px solid var(--auralis-border);
+    border-radius: 20px;
   }
 }
