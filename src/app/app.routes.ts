@@ -8,6 +8,11 @@ import {MainComponent} from './pages/main.component';
 
 export const routes: Routes = [
   {
+    path: 'live-sign-reader',
+    loadComponent: () =>
+      import('./pages/live-sign-reader/live-sign-reader.component').then(m => m.LiveSignReaderComponent),
+  },
+  {
     path: 'playground',
     loadComponent: () => import('./pages/playground/playground.component').then(m => m.PlaygroundComponent),
   },

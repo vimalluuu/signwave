@@ -1,0 +1,210 @@
+<div class="lsr-shell">
+  <!-- ═══════ TOP BAR ═══════ -->
+  <header class="lsr-topbar">
+    <ion-button routerLink="/" fill="clear" class="back-btn" id="lsr-back-btn">
+      <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+      Back
+    </ion-button>
+
+    <div class="lsr-title">
+      <span class="lsr-title-icon">🤟</span>
+      <span>Sign Wave Live Reader</span>
+      <span class="lsr-badge">LIVE</span>
+    </div>
+
+    <div class="lsr-status-dot" [class.active]="isRunning" [class.loading]="isLoading"></div>
+  </header>
+
+  <!-- ═══════ LOADING OVERLAY ═══════ -->
+  @if (isLoading) {
+    <div class="lsr-loading-overlay">
+      <div class="lsr-spinner-ring"></div>
+      <p class="lsr-loading-msg">{{ loadingMessage }}</p>
+      <small class="lsr-loading-hint">This may take 10–20 seconds on first load</small>
+    </div>
+  }
+
+  <!-- ═══════ CAMERA ERROR ═══════ -->
+  @if (cameraError) {
+    <div class="lsr-error-panel">
+      <ion-icon name="camera-outline" class="lsr-error-icon"></ion-icon>
+      <h3>Camera Not Available</h3>
+      <p>{{ cameraError }}</p>
+      <small>Make sure you allow camera access in your browser settings.</small>
+    </div>
+  }
+
+  <!-- ═══════ MAIN CONTENT ═══════ -->
+  @if (!cameraError) {
+    <div class="lsr-content">
+      <!-- Left: Camera + Skeleton Canvas -->
+      <div class="lsr-camera-panel">
+        <div class="lsr-camera-wrapper" [class.hand-detected]="handVisible">
+          <video #videoEl autoplay playsinline muted class="lsr-video-hidden"></video>
+          <canvas #canvasEl class="lsr-canvas"></canvas>
+
+          <!-- Hand detection badge -->
+          <div class="lsr-hand-badge" [class.visible]="handVisible">
+            <ion-icon name="hand-right-outline"></ion-icon>
+            Hand Detected
+          </div>
+
+          <!-- Current letter big display -->
+          @if (currentGesture.letter && currentGesture.letter !== '?' && handVisible) {
+            <div class="lsr-letter-float" [style.border-color]="getConfidenceColor()">
+              {{ currentGesture.letter === ' ' ? '⎵' : currentGesture.letter }}
+            </div>
+          }
+
+          <!-- Confidence bar -->
+          @if (handVisible) {
+            <div class="lsr-confidence-bar-wrap">
+              <div class="lsr-confidence-label">Confidence</div>
+              <div class="lsr-confidence-track">
+                <div
+                  class="lsr-confidence-fill"
+                  [style.width.%]="getConfidencePercent()"
+                  [style.background]="getConfidenceColor()"></div>
+              </div>
+              <div class="lsr-confidence-val" [style.color]="getConfidenceColor()">{{ getConfidencePercent() }}%</div>
+            </div>
+          }
+
+          <!-- No hand hint -->
+          @if (!handVisible && isRunning) {
+            <div class="lsr-no-hand-hint"><span>✋</span> Show your hand to the camera</div>
+          }
+        </div>
+
+        <!-- Quick reference grid -->
+        <div class="lsr-quick-guide">
+          <p class="lsr-guide-title">Quick Reference — Hold gesture ~0.8s to register</p>
+          <div class="lsr-guide-row">
+            <span class="lsr-guide-chip">✋ Open = SPACE</span>
+            <span class="lsr-guide-chip">👌 O shape = O</span>
+            <span class="lsr-guide-chip">☝️ Index = Z</span>
+            <span class="lsr-guide-chip">🤙 Y&nbsp;= Y</span>
+            <span class="lsr-guide-chip">👆👆 Peace = V</span>
+            <span class="lsr-guide-chip">🤟 = Y / I / L</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Translation Panel -->
+      <div class="lsr-translation-panel">
+        <!-- Sentence Output -->
+        <div class="lsr-output-card">
+          <div class="lsr-output-label">
+            <ion-icon name="checkmark-circle-outline" class="lsr-label-icon"></ion-icon>
+            Translated Sentence
+          </div>
+
+          <div class="lsr-output-text" id="lsr-output-text">
+            @if (fullText) {
+              <span class="lsr-sentence-complete">{{ builtSentence }}</span>
+              @if (builtSentence && currentWord) {
+                <span class="lsr-word-sep"> </span>
+              }
+              <span class="lsr-word-current">{{ currentWord }}</span>
+              <span class="lsr-cursor">|</span>
+            } @else {
+              <span class="lsr-placeholder">Start signing to see translation here…</span>
+            }
+          </div>
+
+          <!-- Controls row -->
+          <div class="lsr-output-controls">
+            <ion-button
+              fill="clear"
+              size="small"
+              (click)="addSpaceManually()"
+              [disabled]="!currentWord"
+              id="lsr-btn-space"
+              title="Confirm word / add space">
+              <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+              Space
+            </ion-button>
+
+            <ion-button
+              fill="clear"
+              size="small"
+              (click)="deleteLastLetter()"
+              [disabled]="!fullText"
+              id="lsr-btn-delete"
+              title="Delete last letter">
+              ⌫ Delete
+            </ion-button>
+
+            <ion-button
+              fill="clear"
+              size="small"
+              (click)="clearAll()"
+              [disabled]="!fullText"
+              id="lsr-btn-clear"
+              color="danger"
+              title="Clear all">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              Clear
+            </ion-button>
+
+            <div class="lsr-spacer"></div>
+
+            <ion-button
+              fill="solid"
+              size="small"
+              (click)="speakText()"
+              [disabled]="!fullText || isSpeaking"
+              id="lsr-btn-speak"
+              color="primary">
+              <ion-icon name="volume-high-outline" slot="start"></ion-icon>
+              {{ isSpeaking ? 'Speaking…' : 'Speak' }}
+            </ion-button>
+
+            <ion-button fill="outline" size="small" (click)="copyText()" [disabled]="!fullText" id="lsr-btn-copy">
+              <ion-icon name="copy-outline" slot="start"></ion-icon>
+              Copy
+            </ion-button>
+          </div>
+        </div>
+
+        <!-- Recent Letters Feed -->
+        <div class="lsr-letters-card">
+          <div class="lsr-output-label">
+            <ion-icon name="refresh-outline" class="lsr-label-icon"></ion-icon>
+            Recent Signs
+          </div>
+
+          @if (recognizedLetters.length > 0) {
+            <div class="lsr-letters-feed">
+              @for (item of recognizedLetters.slice(0, 15); track item.timestamp) {
+                <div class="lsr-letter-chip" [class.space-chip]="item.letter === ' '">
+                  <span class="lsr-chip-letter">{{ item.letter === ' ' ? '⎵' : item.letter }}</span>
+                  <span class="lsr-chip-conf">{{ (item.confidence * 100).toFixed(0) }}%</span>
+                </div>
+              }
+            </div>
+          } @else {
+            <p class="lsr-empty-feed">No letters recognized yet. Hold a hand sign in front of the camera.</p>
+          }
+        </div>
+
+        <!-- ASL Alphabet Reference Card -->
+        <div class="lsr-alphabet-card">
+          <div class="lsr-output-label">📖 ASL Alphabet Reference</div>
+          <div class="lsr-alphabet-grid">
+            @for (letter of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); track letter) {
+              <div class="lsr-alpha-cell" [class.current-letter]="currentGesture.letter === letter && handVisible">
+                {{ letter }}
+              </div>
+            }
+            <div
+              class="lsr-alpha-cell space-alpha"
+              [class.current-letter]="currentGesture.letter === ' ' && handVisible">
+              ⎵
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

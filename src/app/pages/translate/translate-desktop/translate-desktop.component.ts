@@ -20,6 +20,7 @@ import {
   downloadOutline,
   phonePortraitOutline,
   watchOutline,
+  handRightOutline,
 } from 'ionicons/icons';
 import {RouterLink} from '@angular/router';
 import {LogoComponent} from '../../../components/logo/logo.component';
@@ -80,6 +81,7 @@ export class TranslateDesktopComponent extends BaseComponent implements OnInit {
       downloadOutline,
       phonePortraitOutline,
       watchOutline,
+      handRightOutline,
     });
   }
 
