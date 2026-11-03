@@ -50,6 +50,10 @@
 
 <ion-content [fullscreen]="true">
   <div class="container">
+    <div class="workspace-heading">
+      <h1>{{ spokenToSigned ? 'Translate words into signs.' : 'Explore sign language.' }}</h1>
+      <p>Choose your languages and input to get started.</p>
+    </div>
     <div id="input-mode-group">
       @if (spokenToSigned) {
         <app-translate-input-button mode="text" icon="language" />

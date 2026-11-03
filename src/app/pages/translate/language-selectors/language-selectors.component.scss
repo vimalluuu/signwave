@@ -1,6 +1,8 @@
 :host {
   display: flex;
   width: 100%;
+  align-items: center;
+  padding-block: 6px;
 
   &.spoken-to-signed {
     flex-direction: row-reverse;
@@ -9,13 +11,17 @@
 
 app-language-selector {
   width: calc(50% - 24px);
+  min-width: 0;
 }
 
 #swap-languages {
   height: 48px;
+  flex-shrink: 0;
   margin: 0;
   --color: var(--auralis-text-secondary);
-  transition: transform 0.3s ease, color 0.2s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.2s ease;
 
   &:hover {
     --color: var(--auralis-black);

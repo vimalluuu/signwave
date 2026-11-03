@@ -12,20 +12,50 @@ ion-content {
   --background: var(--auralis-bg);
 }
 
-.container {
-  flex: 1;
+ion-toolbar {
+  --min-height: 72px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+
+  ion-button {
+    --box-shadow: none;
+    --border-radius: 12px;
+    height: 36px;
+    font-size: 13px;
+    letter-spacing: 0;
+
+    &::part(native):focus-visible {
+      outline: 2px solid #6366f1;
+      outline-offset: 3px;
+    }
+  }
+
+  ion-button[color='warning'] {
+    --ion-color-base: #f5edda !important;
+    --ion-color-contrast: #71551c !important;
+    --ion-color-shade: #e9dfc8 !important;
+  }
+
+  #lsr-nav-btn {
+    --ion-color-base: #e5f2ea !important;
+    --ion-color-contrast: #205a3b !important;
+    --ion-color-shade: #d5e8dc !important;
+  }
 }
 
 // Container
 .container {
+  flex: 1;
   @include anim.animate-fade-in(md3.$md3-duration-medium2);
   display: flex;
   flex-direction: column;
+  padding-top: 28px;
+  padding-bottom: 24px;
 
   @media #{breakpoints.$breakpoint-gt-md} {
     padding: 48px;
-    padding-top: 24px;
-    padding-bottom: 16px;
+    padding-top: 36px;
+    padding-bottom: 24px;
   }
 
   app-drop-pose-file {
@@ -34,7 +64,8 @@ ion-content {
 
   // Input mode button group
   #input-mode-group {
-    height: 68px;
+    min-height: 68px;
+    padding-block: 10px;
     font-family: 'Geist', sans-serif;
     align-items: center;
     display: flex;
@@ -49,32 +80,34 @@ ion-content {
     }
   }
 
-  // Translation card with Auralis glassmorphism styling
+  // Keep the translation workspace distinct from the surrounding page.
   #translation-card {
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--auralis-surface);
     backdrop-filter: blur(24px) saturate(140%);
     -webkit-backdrop-filter: blur(24px) saturate(140%);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--auralis-border);
     width: 100%;
     height: 100%;
     box-shadow:
-      0 48px 96px -24px rgba(0, 0, 0, 0.05),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+      0 16px 48px -24px rgba(24, 32, 55, 0.16),
+      0 2px 8px rgba(24, 32, 55, 0.025);
     transition:
       box-shadow md3.$md3-duration-medium2 md3.$md3-easing-standard,
       transform md3.$md3-duration-medium2 md3.$md3-easing-standard;
     @include anim.animate-scale-in(md3.$md3-duration-medium2, 0.1s);
     position: relative;
     overflow: hidden;
+    border-radius: 24px;
 
     @media #{breakpoints.$breakpoint-gt-md} {
-      border-radius: 32px;
+      border-radius: 28px;
     }
 
     app-language-selectors {
       border-bottom: 1px solid var(--app-divider-color);
       position: relative;
       z-index: 1;
+      background: rgba(255, 255, 255, 0.65);
     }
 
     #content {
@@ -82,6 +115,32 @@ ion-content {
       z-index: 1;
     }
   }
+}
+
+.workspace-heading {
+  padding-inline: 4px;
+  margin-bottom: 12px;
+
+  h1 {
+    margin: 0 0 8px;
+    color: var(--auralis-text-primary);
+    font-size: clamp(24px, 2.4vw, 32px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -1px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--auralis-text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+app-send-feedback {
+  margin-top: 8px;
+  opacity: 0.8;
 }
 
 ntkme-github-button {
@@ -97,15 +156,15 @@ ntkme-github-button {
 .disclaimer {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13px;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.6;
   text-align: end;
   margin-left: auto;
   max-width: max-content;
-  padding: 10px 16px;
-  background: var(--auralis-surface);
-  border-radius: 9999px;
-  border: 1px solid var(--auralis-border);
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
   transition: all md3.$md3-duration-short4 md3.$md3-easing-emphasized;
 
   &:hover {
@@ -131,5 +190,39 @@ ntkme-github-button {
     &:hover {
       opacity: 0.8;
     }
+  }
+}
+
+@media (max-width: 1279px) {
+  ion-toolbar {
+    --padding-start: 8px;
+    --padding-end: 8px;
+
+    ion-title {
+      min-width: 125px;
+      padding-inline: 12px;
+    }
+
+    ion-buttons[slot='primary'] {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      max-width: calc(100vw - 360px);
+      padding-block: 4px;
+    }
+
+    ion-button {
+      --padding-start: 8px;
+      --padding-end: 8px;
+      font-size: 12px;
+      margin-inline: 2px !important;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container,
+  #translation-card {
+    animation: none !important;
+    transition: none !important;
   }
 }
